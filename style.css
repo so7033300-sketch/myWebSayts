@@ -1,0 +1,223 @@
+/* ==========================================================================
+   SOBIROV ODILJON - MAIN PREMIUM TEXTURE DESIGN
+   ========================================================================== */
+
+:root {
+    --cyber-dark: #040711;
+    --cyber-blue: #0b1528;
+    --neon-cyan: #00f0ff;
+    --neon-purple: #7000ff;
+    --neon-green: #00ff66;
+    --text-main: #ffffff;
+    --text-gray: #64748b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+body { background-color: var(--cyber-dark); color: var(--text-main); overflow-x: hidden; position: relative; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+/* 🔒 YUKLANISH TUGAMAGUNCHA ASOSIY SAYT PARDA ORTIDA TURADI */
+body.cyber-locked header, body.cyber-locked section, body.cyber-locked footer {
+    opacity: 0; transform: scale(0.92); filter: blur(25px); pointer-events: none;
+}
+
+/* 📺 STEAM LOADING REJIMI FULLSCREEN DIZAYNI */
+#steam-loading-screen {
+    position: fixed; inset: 0; background-color: #03050d; z-index: 99999;
+    display: flex; justify-content: center; align-items: center;
+    perspective: 1000px;
+    transition: opacity 0.6s, visibility 0.6s, transform 0.6s;
+}
+
+.steam-loader-box { text-align: center; cursor: pointer; }
+
+/* 🌀 HAR XIL RANGLI NEON HALQALAR (Aynan siz yuborgan rasmdagi struktura) */
+.steam-spinner {
+    width: 130px; height: 130px; position: relative; margin: 0 auto 35px auto;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.ring {
+    position: absolute; inset: 0; border-radius: 50%;
+    border: 3px solid transparent;
+}
+
+/* Moviy neon chiziq (Katta aylana) */
+.ring-cyan {
+    border-top-color: var(--neon-cyan);
+    box-shadow: 0 -4px 15px rgba(0, 240, 255, 0.3);
+}
+
+/* Binafsha neon chiziq (O'rta aylana) */
+.ring-purple {
+    inset: 10px; border-bottom-color: var(--neon-purple);
+    box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
+}
+
+/* Yashil neon chiziq (Kichik ichki aylana) */
+.ring-green {
+    inset: 20px; border-left-color: var(--neon-green);
+    box-shadow: -4px 0 15px rgba(0, 255, 102, 0.3);
+}
+
+.ring-core {
+    font-size: 24px; text-shadow: 0 0 15px #fff; font-weight: bold; position: relative; z-index: 10;
+}
+
+.steam-loading-text { font-family: monospace; font-size: 11px; color: var(--neon-cyan); text-shadow: 0 0 12px var(--neon-cyan); letter-spacing: 2px; }
+
+/* CORE BACKGROUND DECORATIONS */
+.cyber-grid-bg { position: absolute; inset: 0; z-index: -3; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.005) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.005) 1px, transparent 1px); background-size: 60px 60px; }
+.cyber-nebula { position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(150px); z-index: -2; pointer-events: none; opacity: 0.12; }
+.nebula-1 { top: -100px; right: -50px; background: var(--neon-purple); }
+.nebula-2 { top: 600px; left: -100px; background: var(--neon-cyan); }
+
+/* NAVBAR HEADER */
+header { background-color: rgba(4, 7, 17, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 22px 0; position: sticky; top: 0; z-index: 1000; }
+.header-flex { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, #fff, var(--text-gray)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+nav a { text-decoration: none; color: var(--text-gray); margin-left: 30px; font-weight: 600; font-size: 15px; transition: 0.3s; }
+nav a:hover { color: var(--text-main); text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+.btn-nav { border: 1px solid rgba(0, 240, 255, 0.25); color: var(--neon-cyan) !important; padding: 10px 24px; border-radius: 30px; }
+
+/* HERO SECTIONS */
+.hero { padding: 90px 0 130px 0; }
+.hero-content { display: flex; justify-content: space-between; align-items: center; gap: 50px; }
+.hero-text { flex: 1.2; }
+.cyber-badge { background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); padding: 6px 16px; border-radius: 30px; display: inline-block; font-family: monospace; font-size: 12px; color: var(--neon-cyan); margin-bottom: 24px; }
+.hero-title { font-size: 58px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1.5px; }
+.gradient-cyber-text { background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-subtitle { color: var(--text-gray); font-size: 18px; line-height: 1.7; margin-bottom: 40px; max-width: 580px; }
+.hero-stats { display: flex; gap: 50px; margin-bottom: 45px; border-left: 2px solid var(--neon-purple); padding-left: 20px; }
+.stat-box h3 { font-size: 28px; font-weight: 700; }
+.stat-box p { font-size: 13px; color: var(--text-gray); }
+.btn-primary-cyber { display: inline-block; text-decoration: none; background: var(--neon-purple); color: #fff; padding: 16px 38px; border-radius: 14px; font-weight: 700; box-shadow: 0 0 35px rgba(111, 0, 255, 0.4); }
+
+/* HOLOGRAM DISPLAY MONITOR */
+.hero-image { flex: 0.8; display: flex; justify-content: center; }
+.cyber-monitor-frame { width: 320px; height: 360px; background: var(--cyber-blue); border-radius: 36px; border: 1px solid rgba(255,255,255,0.03); display: flex; justify-content: center; align-items: center; box-shadow: 0 30px 60px rgba(0,0,0,0.5); position: relative; }
+.cyber-monitor-frame::before { content: ''; position: absolute; inset: -2px; border-radius: 38px; padding: 2px; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.3; }
+.monitor-core { font-size: 100px; text-shadow: 0 0 40px var(--neon-purple); }
+
+/* XIZMATLAR BLOKI */
+.services { padding: 100px 0; background: linear-gradient(180deg, var(--cyber-dark) 0%, #050810 100%); }
+.section-heading { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 60px; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.cyber-card-item { background: var(--cyber-blue); border: 1px solid rgba(255,255,255,0.03); padding: 45px 35px; border-radius: 24px; position: relative; overflow: hidden; transition: 0.4s ease; }
+.card-icon-wrapper { font-size: 36px; margin-bottom: 24px; }
+.cyber-card-item h4 { font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+.cyber-card-item p { color: var(--text-gray); font-size: 15px; line-height: 1.6; }
+.card-glow-line { position: absolute; bottom: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple)); transition: width 0.4s ease; }
+
+/* ALOQA PLATFORMASI */
+.contact { padding: 120px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); }
+.cyber-contact-wrapper { display: flex; justify-content: center; gap: 25px; margin-top: 30px; }
+.cyber-btn { display: flex; align-items: center; gap: 14px; text-decoration: none; padding: 16px 36px; border-radius: 16px; font-weight: 700; }
+.tg-variant { background: rgba(0, 136, 204, 0.05); border: 1px solid #0088cc; color: #0088cc !important; }
+.phone-variant { background: rgba(40, 167, 69, 0.05); border: 1px solid #28a745; color: #28a745 !important; }
+.cyber-btn img { width: 24px; height: 24px; }
+footer { padding: 40px; text-align: center; color: #475569; font-family: monospace; font-size: 13px; }
+
+@media (max-width: 992px) {
+    .hero-content { flex-direction: column-reverse; text-align: center; gap: 50px; }
+    .hero-title { font-size: 42px; }
+    .hero-stats { justify-content: center; border-left: none; padding-left: 0; }
+    nav { display: none; }
+    .cyber-contact-wrapper { flex-direction: column; align-items: center; }
+    .cyber-btn { width: 100%; max-width: 320px; justify-content: center; }
+}
+/* ==========================================================================
+   SOBIROV ODILJON - ADVANCED KINETIC DATA FLOW ANIMATIONS v2.0
+   ========================================================================= */
+
+/* 🌀 RANGLI HALQALARNING TURli TEZLIKDA BIR-BIRINI QUVIB AYLANISHI */
+.ring-cyan { animation: spinClockwise 1.5s linear infinite; }
+.ring-purple { animation: spinCounterClockwise 2s linear infinite; }
+.ring-green { animation: spinClockwise 1s linear infinite; }
+
+/* 🚀 STEAM BIG PICTURE: PORTLAB YAQINLASHISH EFFEKTI (HYPER-ZOOM) */
+#steam-loading-screen.steam-explode-zoom {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale3d(3.8, 3.8, 3.8);
+    filter: blur(15px);
+    transition: transform 0.65s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s ease, filter 0.5s;
+}
+
+/* ==========================================================================
+   💥 MA'LUMOTLARNING BIRIN-KETIN (STAGGERED) UCHIB CHIQISH TIZIMI
+   ========================================================================== */
+
+/* 1. Navigatsiya paneli (Header) - Eng birinchi tepadan silliq tushadi */
+body.cyber-activated header { 
+    animation: cyberSlideDown 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; 
+}
+
+/* 2. Sarlavha va Nishon (Badge) - Birinchi bo'lib chapdan siljiydi */
+body.cyber-activated .cyber-badge,
+body.cyber-activated .hero-title { 
+    animation: cyberSlideLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; 
+}
+
+/* 3. Kichik matn (Subtitle) va Tugma - Sarlavhadan keyin silliq chiqadi */
+body.cyber-activated .hero-subtitle,
+body.cyber-activated .hero-actions { 
+    animation: cyberSlideLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both; 
+}
+
+/* 4. Statistika raqamlari (Stats) - Bittalab (stagger) effekt bilan ko'tariladi */
+body.cyber-activated .stat-box:nth-child(1) { animation: cyberPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both; }
+body.cyber-activated .stat-box:nth-child(2) { animation: cyberPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s both; }
+body.cyber-activated .stat-box:nth-child(3) { animation: cyberPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both; }
+
+/* 5. O'ng tarafdagi Gologramma Monitor - Maxsus kiber-yorug'lik bilan kiradi */
+body.cyber-activated .cyber-monitor-frame { 
+    animation: cyberMonitorIntro 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both, floatingMonitor 6s ease-in-out infinite 1.9s; 
+}
+
+/* 6. Xizmat ko'rsatish kartalari (Services) - Pastdan kaskad uslubida ko'tariladi */
+body.cyber-activated .section-heading { animation: cyberSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both; }
+body.cyber-activated .cyber-card-item:nth-child(1) { animation: cyberSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both; }
+body.cyber-activated .cyber-card-item:nth-child(2) { animation: cyberSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.1s both; }
+body.cyber-activated .cyber-card-item:nth-child(3) { animation: cyberSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both; }
+
+
+/* ==========================================================================
+   INTERAKTIV HOVER EFFEKTLARI
+   ========================================================================== */
+.cyber-card-item:hover { transform: translateY(-12px); background: rgba(11, 21, 40, 0.7); border-color: rgba(111, 0, 255, 0.3); box-shadow: 0 20px 40px rgba(111, 0, 255, 0.15); }
+.cyber-card-item:hover .card-glow-line { width: 100%; }
+.btn-nav:hover { background: var(--cyber-neon); color: #000 !important; box-shadow: 0 0 25px var(--cyber-neon); transform: translateY(-2px); }
+.btn-primary-cyber:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(111, 0, 255, 0.7); }
+.tg-variant:hover { background: #0088cc; color: #fff !important; box-shadow: 0 0 35px rgba(0, 136, 204, 0.5); transform: translateY(-4px); }
+.phone-variant:hover { background: #28a745; color: #fff !important; box-shadow: 0 0 35px rgba(40, 167, 69, 0.5); transform: translateY(-4px); }
+.nebula-1 { animation: floatingGlow 10s ease-in-out infinite alternate; }
+.nebula-2 { animation: floatingGlow 12s ease-in-out infinite alternate-reverse; }
+
+
+/* ==========================================================================
+   MATEMATIK KIBER KEYFRAMES FORMULALARI
+   ========================================================================== */
+@keyframes spinClockwise { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes spinCounterClockwise { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+
+@keyframes cyberSlideDown { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cyberSlideLeft { from { opacity: 0; transform: translateX(-100px); filter: blur(15px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+
+/* Monitor uchun 3D ochilish effekti */
+@keyframes cyberMonitorIntro { 
+    from { opacity: 0; transform: scale(0.7) rotateY(-30deg); filter: blur(20px); } 
+    to { opacity: 1; transform: scale(1) rotateY(0deg); filter: blur(0); } 
+}
+
+/* Statistika raqamlari uchun prujinasimon (Elastic) effekt */
+@keyframes cyberPopIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cyberSlideUp { from { opacity: 0; transform: translateY(80px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@keyframes floatingMonitor { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes floatingGlow { from { transform: translate(0, 0); } to { transform: translate(40px, 30px); } }
+        

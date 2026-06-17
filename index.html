@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobirov | Premium Portfolio</title>
+    <!-- 2 ta CSS faylini ulaymiz -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+<body class="cyber-locked">
+
+    <!-- 📺 STEAM BIG PICTURE: HAR XIL RANGLI AYLANMA ANIMATSIYA EKRANI -->
+    <div id="steam-loading-screen">
+        <div class="steam-loader-box" id="system-ignite-btn">
+            
+            <!-- Rasmdagi har xil neon rangli quvuvchi halqalar -->
+            <div class="steam-spinner">
+                <div class="ring ring-cyan"></div>
+                <div class="ring ring-purple"></div>
+                <div class="ring ring-green"></div>
+                <div class="ring-core">🔒</div>
+            </div>
+            
+            <p class="steam-loading-text">TIZIMNI ISHGA TUSHIRISH UCHUN BOSING</p>
+        </div>
+    </div>
+
+    <!-- 🌌 PREMIUM KIBER STRUKTURA -->
+    <div class="cyber-grid-bg"></div>
+    <div class="cyber-nebula nebula-1"></div>
+    <div class="cyber-nebula nebula-2"></div>
+
+    <!-- HEADER NAVIGATION -->
+    <header>
+        <div class="container header-flex">
+            <h1 class="logo">Sobirov</h1>
+            <nav>
+                <a href="#about">Men haqimda</a>
+                <a href="#services">Xizmatlar</a>
+                <a href="#portfolio">Loyihalar</a>
+                <a href="#contact" class="btn-nav">Bog'lanish</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ASOSIY QISM (Hero Section) -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="cyber-badge"><span>CORE_PROTOCOL: CONNECTED</span></div>
+                <h2 class="hero-title">Salom, men <br><span class="gradient-cyber-text">Sobirov Odiljon</span></h2>
+                <p class="hero-subtitle">Full-Stack dasturchi va Kiberxavfsizlik mutaxassisiman. Men biznes jarayonlarini avtomatlashtiruvchi yuqori yuklamali veb-saytlar yarataman va ularni kiberhujumlardan 100% himoya qilaman.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-box"><h3>100%</h3><p>Xavfsiz Kod</p></div>
+                    <div class="stat-box"><h3>Full</h3><p>Stack Dev</p></div>
+                    <div class="stat-box"><h3>🔒</h3><p>Cyber Safe</p></div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary-cyber">Loyiha boshlash</a>
+                </div>
+            </div>
+
+            <!-- O'ng tarafdagi premium monitoring ramkasi -->
+            <div class="hero-image">
+                <div class="cyber-monitor-frame">
+                    <div class="monitor-screen">
+                        <div class="monitor-core">🛡️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- XIZMATLAR BO'LIMI -->
+    <section id="services" class="services">
+        <div class="container">
+            <h3 class="section-heading">Mening Xizmatlarim</h3>
+            <div class="services-grid">
+                <div class="cyber-card-item">
+                    <div class="card-icon-wrapper">💻</div>
+                    <h4>Full-Stack Veb-Dasturlash</h4>
+                    <p>Frontend interaktiv dizaynidan tortib, murakkab Backend boshqaruv tizimlari va server qismini mutlaqo xavfsiz noldan qurish.</p>
+                    <div class="card-glow-line"></div>
+                </div>
+                <div class="cyber-card-item">
+                    <div class="card-icon-wrapper">🛍️</div>
+                    <h4>Xavfsiz Onlayn Do'konlar</h4>
+                    <p>Mebel, kiyim yoki boshqa do'konlar uchun to'lov tizimlari, admin panellar va kiber-himoyalangan ma'lumotlar bazasi.</p>
+                    <div class="card-glow-line"></div>
+                </div>
+                <div class="cyber-card-item">
+                    <div class="card-icon-wrapper">🛡️</div>
+                    <h4>Pentesting va Sayt Himoyasi</h4>
+                    <p>Mavjud tizim va saytlaringizni xakerlar hujumidan oldin buzib kirishga test qilib berish va kiber-himoya choralarini o'rnatish.</p>
+                    <div class="card-glow-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALOQA BO'LIMI -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h3 class="section-heading">Xavfsiz Aloqa Kanalini Yoqish</h3>
+            <div class="cyber-contact-wrapper">
+                <a href="https://t.me" target="_blank" class="cyber-btn tg-variant">
+                    <img src="https://wikimedia.org" alt="Telegram">
+                    <span>Telegram @sobirov_cyber</span>
+                </a>
+                <a href="tel:+998937001004" class="cyber-btn phone-variant">
+                    <div class="phone-pulse-icon">📞</div>
+                    <span>+998 (93) 700-10-04</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>// SECURE_CORE_PROTOCOL &bull; Sobirov &copy; 2026</p>
+    </footer>
+
+    <!-- INTERAKTIV EVENT SCRIPT -->
+    <script>
+        const btn = document.getElementById('system-ignite-btn');
+        const screen = document.getElementById('steam-loading-screen');
+        const body = document.body;
+
+        // Gumburlagan chuqur raqamli ovoz effekti (Deep Sci-Fi Boom)
+        const boomAudio = new Audio('https://mixkit.co');
+        boomAudio.volume = 0.7;
+
+        btn.addEventListener('click', () => {
+            boomAudio.play().catch(e => console.log(e));
+
+            // Bosilganda ekranning 3D portlash (Hyper-Zoom) klassini ishga tushirish
+            screen.classList.add('steam-explode-zoom');
+            
+            setTimeout(() => {
+                body.classList.remove('cyber-locked');
+                body.classList.add('cyber-activated');
+            }, 600); 
+        });
+    </script>
+</body>
+</html>
