@@ -10,7 +10,7 @@
     --neon-green: #00ff66;
     --text-main: #ffffff;
     --text-gray: #64748b;
-}
+}   
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
 body { background-color: var(--cyber-dark); color: var(--text-main); overflow-x: hidden; position: relative; }
@@ -30,6 +30,7 @@ body.cyber-locked header, body.cyber-locked section, body.cyber-locked footer {
 }
 
 .steam-loader-box { text-align: center; cursor: pointer; }
+
 
 /* 🌀 HAR XIL RANGLI NEON HALQALAR (Aynan siz yuborgan rasmdagi struktura) */
 .steam-spinner {
@@ -53,7 +54,7 @@ body.cyber-locked header, body.cyber-locked section, body.cyber-locked footer {
     inset: 10px; border-bottom-color: var(--neon-purple);
     box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
 }
-
+    
 /* Yashil neon chiziq (Kichik ichki aylana) */
 .ring-green {
     inset: 20px; border-left-color: var(--neon-green);
