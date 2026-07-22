@@ -1,148 +1,705 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobirov | Premium Portfolio</title>
-    <!-- 2 ta CSS faylini ulaymiz -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="animations.css">
-</head>
-<body class="cyber-locked">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobirov Odiljon — Full-Stack &amp; Kiberxavfsizlik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #04060c;
+    --bg-2: #070b16;
+    --panel: rgba(16, 22, 38, 0.55);
+    --panel-solid: #0b0f1c;
+    --border: rgba(120, 150, 200, 0.14);
+    --border-strong: rgba(120, 180, 255, 0.28);
+    --text: #e8ecf5;
+    --muted: #8992a8;
+    --muted-2: #5c6478;
+    --cyan: #35e2e0;
+    --violet: #9d7bff;
+    --green: #3ee08a;
+    --amber: #ffb454;
+    --grad-brand: linear-gradient(120deg, var(--cyan), var(--violet));
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
 
-    <!-- 📺 STEAM BIG PICTURE: HAR XIL RANGLI AYLANMA ANIMATSIYA EKRANI -->
-    <div id="steam-loading-screen">
-        <div class="steam-loader-box" id="system-ignite-btn">
-            
-            <!-- Rasmdagi har xil neon rangli quvuvchi halqalar -->
-            <div class="steam-spinner">
-                <div class="ring ring-cyan"></div>
-                <div class="ring ring-purple"></div>
-                <div class="ring ring-green"></div>
-                <div class="ring-core">🔒</div>
-            </div>
-            
-            <p class="steam-loading-text">TIZIMNI ISHGA TUSHIRISH UCHUN BOSING</p>
-        </div>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -5%, rgba(53,226,224,0.10), transparent 60%),
+      radial-gradient(ellipse 900px 600px at 90% 10%, rgba(157,123,255,0.10), transparent 60%),
+      radial-gradient(ellipse 1000px 700px at 50% 100%, rgba(62,224,138,0.05), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  #bg-canvas{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:0; opacity:0.55;
+  }
+
+  .wrap{ position:relative; z-index:1; }
+
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background: rgba(53,226,224,0.25); color:#fff; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{ width:9px; }
+  ::-webkit-scrollbar-track{ background: var(--bg); }
+  ::-webkit-scrollbar-thumb{ background: linear-gradient(var(--cyan), var(--violet)); border-radius:6px; }
+
+  .container{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ===== NAV ===== */
+  nav{
+    position: sticky; top:0; z-index:50;
+    backdrop-filter: blur(16px) saturate(140%);
+    background: rgba(4,6,12,0.55);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family: var(--font-display); font-weight:700; font-size:1.05rem;
+    letter-spacing:0.02em;
+  }
+  .logo-mark{
+    width:26px; height:26px; border-radius:8px;
+    background: var(--grad-brand);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 18px rgba(53,226,224,0.4);
+    position:relative;
+  }
+  .logo-mark::after{
+    content:''; position:absolute; inset:6px;
+    background: var(--bg); border-radius:3px;
+  }
+  .nav-links{
+    display:flex; gap:36px;
+    font-size:0.92rem; color: var(--muted);
+  }
+  .nav-links a{ transition: color .2s ease; position:relative; }
+  .nav-links a:hover{ color: var(--text); }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-6px; width:0; height:1px;
+    background: var(--cyan); transition: width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .btn{
+    font-family: var(--font-body);
+    font-weight:600; font-size:0.88rem;
+    padding: 10px 20px; border-radius: 10px;
+    border:1px solid var(--border-strong);
+    cursor:pointer; transition: all .25s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{
+    background: var(--grad-brand);
+    color: #04060c;
+    border:none;
+    box-shadow: 0 6px 24px rgba(53,226,224,0.22);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(157,123,255,0.35); }
+  .btn-ghost{ background: rgba(255,255,255,0.02); color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--cyan); background: rgba(53,226,224,0.06); }
+
+  /* ===== BADGE / EYEBROW ===== */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family: var(--font-mono); font-size:0.72rem; letter-spacing:0.12em;
+    text-transform:uppercase; color: var(--green);
+    border:1px solid rgba(62,224,138,0.3);
+    background: rgba(62,224,138,0.06);
+    padding: 6px 14px; border-radius:100px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{
+    width:6px; height:6px; border-radius:50%; background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse-dot 1.8s infinite ease-in-out;
+  }
+  @keyframes pulse-dot{ 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
+
+  /* ===== HERO ===== */
+  .hero{
+    display:grid; grid-template-columns: 1.15fr 0.85fr;
+    align-items:center; gap:40px;
+    padding: 90px 0 100px;
+    min-height: 82vh;
+  }
+  .hero h1{
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+    line-height:1.08; font-weight:700; letter-spacing:-0.01em;
+  }
+  .hero h1 .line1{ color: var(--text); display:block; }
+  .hero h1 .line2{
+    display:block; margin-top:4px;
+    background: var(--grad-brand);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{
+    margin-top:22px; color: var(--muted); font-size:1.02rem; line-height:1.75;
+    max-width: 560px;
+  }
+  .hero p.lead b{ color: var(--text); font-weight:600; }
+  .hero p.lead .hl-cyan{ color: var(--cyan); font-weight:600; }
+  .hero p.lead .hl-violet{ color: var(--violet); font-weight:600; }
+  .hero p.lead .hl-green{ color: var(--green); font-weight:600; }
+
+  .stat-row{ display:flex; gap:28px; margin-top:30px; }
+  .stat{ font-family: var(--font-mono); }
+  .stat .num{ font-size:1.3rem; font-weight:700; }
+  .stat .label{ font-size:0.72rem; color: var(--muted-2); text-transform:uppercase; letter-spacing:0.06em; margin-top:2px; }
+  .stat.s1 .num{ color: var(--violet); }
+  .stat.s2 .num{ color: #fff; }
+  .stat.s3 .num{ color: var(--green); display:flex; align-items:center; gap:6px; }
+
+  .cta-row{ display:flex; align-items:center; gap:26px; margin-top:34px; }
+  .cta-row .sub-link{ font-size:0.9rem; color: var(--cyan); border-bottom:1px dashed rgba(53,226,224,0.4); padding-bottom:2px; }
+
+  /* Hero 3D stage */
+  .hero-stage{
+    position:relative; aspect-ratio:1/1; max-width:460px; justify-self:center;
+  }
+  .hero-stage canvas{ position:absolute; inset:0; width:100%!important; height:100%!important; }
+  .hero-ring-label{
+    position:absolute; font-family: var(--font-mono); font-size:0.62rem;
+    color: var(--muted-2); letter-spacing:0.15em; text-transform:uppercase;
+  }
+  .hero-ring-label.top{ top:6%; left:50%; transform:translateX(-50%); }
+  .hero-ring-label.bottom{ bottom:4%; left:50%; transform:translateX(-50%); }
+
+  /* ===== SECTION HEAD ===== */
+  .section{ padding: 90px 0; }
+  .section-head{ text-align:center; max-width:600px; margin:0 auto 56px; }
+  .section-head h2{
+    font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight:700; margin-top:16px; letter-spacing:-0.01em;
+  }
+  .section-head p{ color: var(--muted); margin-top:14px; font-size:0.98rem; line-height:1.7; }
+
+  /* ===== SERVICES (3D tilt cards) ===== */
+  .card-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; perspective: 1200px; }
+  .tilt-card{
+    position:relative;
+    background: var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px 26px;
+    transform-style:preserve-3d;
+    transition: transform .12s ease, border-color .3s ease, box-shadow .3s ease;
+    will-change: transform;
+    overflow:hidden;
+  }
+  .tilt-card::before{
+    content:'';
+    position:absolute; inset:0; border-radius:18px;
+    background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(53,226,224,0.14), transparent 55%);
+    opacity:0; transition: opacity .3s ease;
+    pointer-events:none;
+  }
+  .tilt-card:hover::before{ opacity:1; }
+  .tilt-card:hover{ border-color: var(--border-strong); box-shadow: 0 22px 50px rgba(0,0,0,0.45); }
+  .card-index{
+    position:absolute; top:22px; right:24px;
+    font-family: var(--font-mono); font-size:0.68rem; color: var(--muted-2);
+  }
+  .card-icon{
+    width:46px; height:46px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px; font-size:1.3rem;
+    transform: translateZ(30px);
+  }
+  .card-icon.c1{ background: rgba(157,123,255,0.14); border:1px solid rgba(157,123,255,0.3); }
+  .card-icon.c2{ background: rgba(53,226,224,0.14); border:1px solid rgba(53,226,224,0.3); }
+  .card-icon.c3{ background: rgba(62,224,138,0.14); border:1px solid rgba(62,224,138,0.3); }
+  .tilt-card h3{
+    font-family: var(--font-display); font-weight:600; font-size:1.12rem;
+    margin-bottom:12px; transform: translateZ(20px);
+  }
+  .tilt-card p{ color: var(--muted); font-size:0.9rem; line-height:1.7; transform: translateZ(10px); }
+
+  /* ===== PROJECTS ===== */
+  .project-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; perspective:1200px; }
+  .project-card{
+    position:relative; border-radius:18px; overflow:hidden;
+    border:1px solid var(--border);
+    background: var(--panel-solid);
+    transform-style:preserve-3d;
+    transition: transform .12s ease, border-color .3s ease;
+  }
+  .project-card:hover{ border-color: var(--border-strong); }
+  .project-thumb{
+    height:150px; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    transform: translateZ(20px);
+  }
+  .project-thumb canvas{ position:absolute; inset:0; }
+  .project-body{ padding:22px 22px 26px; transform: translateZ(10px); }
+  .project-tag{
+    font-family: var(--font-mono); font-size:0.65rem; letter-spacing:0.08em;
+    text-transform:uppercase; color: var(--cyan); margin-bottom:8px; display:block;
+  }
+  .project-body h4{ font-family: var(--font-display); font-size:1.02rem; margin-bottom:8px; }
+  .project-body p{ color: var(--muted); font-size:0.85rem; line-height:1.6; }
+  .project-stack{ display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  .project-stack span{
+    font-family: var(--font-mono); font-size:0.65rem; color: var(--muted);
+    border:1px solid var(--border); padding:3px 9px; border-radius:100px;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-panel{
+    position:relative;
+    background: var(--panel);
+    border:1px solid var(--border-strong);
+    border-radius:24px;
+    padding: 60px 40px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .contact-panel::before{
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(500px circle at 50% 0%, rgba(53,226,224,0.12), transparent 60%);
+    pointer-events:none;
+  }
+  .contact-panel h2{
+    font-family: var(--font-display); font-weight:700; font-size:clamp(1.5rem,3vw,2rem);
+    position:relative; z-index:1;
+  }
+  .contact-panel > p{ color: var(--muted); margin-top:12px; position:relative; z-index:1; }
+  .contact-actions{
+    display:flex; gap:16px; justify-content:center; margin-top:34px;
+    position:relative; z-index:1; flex-wrap:wrap;
+  }
+  .channel-btn{
+    display:flex; align-items:center; gap:10px;
+    padding:14px 26px; border-radius:14px;
+    font-weight:600; font-size:0.95rem;
+    border:1px solid var(--border-strong);
+    background: rgba(255,255,255,0.03);
+    transition: all .25s ease;
+  }
+  .channel-btn:hover{ transform: translateY(-3px); }
+  .channel-btn.telegram{ color:#5fc6ff; }
+  .channel-btn.telegram:hover{ background: rgba(53,150,255,0.12); box-shadow:0 10px 30px rgba(53,150,255,0.2); border-color: rgba(95,198,255,0.5); }
+  .channel-btn.phone{ color: var(--green); }
+  .channel-btn.phone:hover{ background: rgba(62,224,138,0.1); box-shadow:0 10px 30px rgba(62,224,138,0.2); border-color: rgba(62,224,138,0.5); }
+
+  /* ===== FOOTER ===== */
+  footer{
+    border-top:1px solid var(--border);
+    padding: 26px 0; text-align:center;
+    font-family: var(--font-mono); font-size:0.72rem; color: var(--muted-2);
+    letter-spacing:0.04em;
+  }
+
+  /* Responsive */
+  @media (max-width: 920px){
+    .hero{ grid-template-columns:1fr; padding-top:50px; text-align:center; }
+    .hero p.lead{ margin-left:auto; margin-right:auto; }
+    .stat-row, .cta-row{ justify-content:center; }
+    .hero-stage{ margin-top:20px; max-width:340px; }
+    .card-grid, .project-grid{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="wrap">
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo"><span class="logo-mark"></span> Sobirov</div>
+      <div class="nav-links">
+        <a href="#about">Men haqimda</a>
+        <a href="#services">Xizmatlar</a>
+        <a href="#projects">Loyihalar</a>
+      </div>
+      <a href="#contact" class="btn btn-primary">Bog'lanish</a>
+    </div>
+  </nav>
+
+  <header class="container hero" id="about">
+    <div>
+      <span class="eyebrow"><span class="dot"></span></span>
+      <h1>
+        <span class="line1">Salom, men</span>
+        <span class="line2">Sobirov Odiljon</span>
+      </h1>
+      <p class="lead">
+        <span class="hl-violet">Full-Stack dasturchi</span> va <span class="hl-cyan">kiberxavfsizlik</span> mutaxassisiman.
+        Men biznes jarayonlarini avtomatlashtiruvchi, yuqori yuklamali <b>veb-saytlar</b> yarataman va
+        ularni <span class="hl-green">kiberhujumlardan 100% himoya</span> qilaman.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat s1"><div class="num">100%</div><div class="label">Xavfsiz kod</div></div>
+        <div class="stat s2"><div class="num">Full</div><div class="label">Stack Dev</div></div>
+        <div class="stat s3"><div class="num">🔒 Cyber</div><div class="label">Safe</div></div>
+      </div>
+
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Loyiha boshlash →</a>
+        <a href="#services" class="sub-link">Xizmatlarni ko'rish ↓</a>
+      </div>
     </div>
 
-    <!-- 🌌 PREMIUM KIBER STRUKTURA -->
-    <div class="cyber-grid-bg"></div>
-    <div class="cyber-nebula nebula-1"></div>
-    <div class="cyber-nebula nebula-2"></div>
+    <div class="hero-stage">
+      <span class="hero-ring-label top">
+      <canvas id="hero-canvas"></canvas>
+      <span class="hero-ring-label bottom"></span>
+    </div>
+  </header>
 
-    <!-- HEADER NAVIGATION -->
-    <header>
-        <div class="container header-flex">
-            <h1 class="logo">Sobirov</h1>
-            <nav>
-                <a href="#about">Men haqimda</a>
-                <a href="#services">Xizmatlar</a>
-                <a href="#portfolio">Loyihalar</a>
-                <a href="#contact" class="btn-nav">Bog'lanish</a>
-            </nav>
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="color:var(--violet); border-color:rgba(157,123,255,0.3); background:rgba(157,123,255,0.06);"><span class="dot" style="background:var(--violet); box-shadow:0 0 8px var(--violet);"></span> XIZMATLAR RO'YXATI</span>
+        <h2>Mening Xizmatlarim</h2>
+        <p>Kod yozishdan tortib, uni har qanday hujumdan himoya qilishgacha — to'liq sikl.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="tilt-card">
+          <span class="card-index">01</span>
+          <div class="card-icon c1">💻</div>
+          <h3>Full-Stack Veb-Dasturlash</h3>
+          <p>Frontend interfeys dizaynidan tortib, murakkab backend boshqaruv tizimi va server qismiga muhtoj bo'lgan har qanday loyiha.</p>
         </div>
-    </header>
-
-    <!-- ASOSIY QISM (Hero Section) -->
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <div class="cyber-badge"><span>CORE_PROTOCOL: CONNECTED</span></div>
-                <h2 class="hero-title">Salom, men <br><span class="gradient-cyber-text">Sobirov Odiljon</span></h2>
-                <p class="hero-subtitle">Full-Stack dasturchi va Kiberxavfsizlik mutaxassisiman. Men biznes jarayonlarini avtomatlashtiruvchi yuqori yuklamali veb-saytlar yarataman va ularni kiberhujumlardan 100% himoya qilaman.</p>
-                
-                <div class="hero-stats">
-                    <div class="stat-box"><h3>100%</h3><p>Xavfsiz Kod</p></div>
-                    <div class="stat-box"><h3>Full</h3><p>Stack Dev</p></div>
-                    <div class="stat-box"><h3>🔒</h3><p>Cyber Safe</p></div>
-                </div>
-
-                <div class="hero-actions">
-                    <a href="#contact" class="btn-primary-cyber">Loyiha boshlash</a>
-                </div>
-            </div>
-
-            <!-- O'ng tarafdagi premium monitoring ramkasi -->
-            <div class="hero-image">
-                <div class="cyber-monitor-frame">
-                    <div class="monitor-screen">
-                        <div class="monitor-core">🛡️</div>
-                    </div>
-                </div>
-            </div>
+        <div class="tilt-card">
+          <span class="card-index">02</span>
+          <div class="card-icon c2">🛒</div>
+          <h3>Xavfsiz Onlayn Do'konlar</h3>
+          <p>Mahsulot, kiyim yoki boshqa do'konlar uchun to'lov tizimi, admin panellar va kiber-himoyalangan ma'lumotlar bazasi.</p>
         </div>
-    </section>
-
-    <!-- XIZMATLAR BO'LIMI -->
-    <section id="services" class="services">
-        <div class="container">
-            <h3 class="section-heading">Mening Xizmatlarim</h3>
-            <div class="services-grid">
-                <div class="cyber-card-item">
-                    <div class="card-icon-wrapper">💻</div>
-                    <h4>Full-Stack Veb-Dasturlash</h4>
-                    <p>Frontend interaktiv dizaynidan tortib, murakkab Backend boshqaruv tizimlari va server qismini mutlaqo xavfsiz noldan qurish.</p>
-                    <div class="card-glow-line"></div>
-                </div>
-                <div class="cyber-card-item">
-                    <div class="card-icon-wrapper">🛍️</div>
-                    <h4>Xavfsiz Onlayn Do'konlar</h4>
-                    <p>Mebel, kiyim yoki boshqa do'konlar uchun to'lov tizimlari, admin panellar va kiber-himoyalangan ma'lumotlar bazasi.</p>
-                    <div class="card-glow-line"></div>
-                </div>
-                <div class="cyber-card-item">
-                    <div class="card-icon-wrapper">🛡️</div>
-                    <h4>Pentesting va Sayt Himoyasi</h4>
-                    <p>Mavjud tizim va saytlaringizni xakerlar hujumidan oldin buzib kirishga test qilib berish va kiber-himoya choralarini o'rnatish.</p>
-                    <div class="card-glow-line"></div>
-                </div>
-            </div>
+        <div class="tilt-card">
+          <span class="card-index">03</span>
+          <div class="card-icon c3">🛡️</div>
+          <h3>Pentesting va Sayt Himoyasi</h3>
+          <p>Mavjud tizim va saytlaringizni real hujumlar orqali tekshirib, zaifliklarni topamiz va kiber-himoya choralarini o'rnatamiz.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- ALOQA BO'LIMI -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h3 class="section-heading">Xavfsiz Aloqa Kanalini Yoqish</h3>
-            <div class="cyber-contact-wrapper">
-                <a href="https://t.me/sobirov_cybersecurity" target="_blank" class="cyber-btn tg-variant">
-                    <img src="https://wikimedia.org" alt="Telegram">
-                    <span>Telegram</span>
-                </a>
-                <a href="tel:+998937001004" class="cyber-btn phone-variant">
-                    <div class="phone-pulse-icon">📞</div>
-                    <span>+998 (93) 700-10-04</span>
-                </a>
-            </div>
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="color:var(--cyan); border-color:rgba(53,226,224,0.3); background:rgba(53,226,224,0.06);"><span class="dot" style="background:var(--cyan); box-shadow:0 0 8px var(--cyan);"></span> LOYIHALAR ARXIVI</span>
+        <h2>Amaldagi Loyihalar</h2>
+        <p>So'nggi loyihalarim — har biri kod sifatiga ham, xavfsizlikka ham qat'iy yondashuv bilan qurilgan.</p>
+      </div>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg, rgba(157,123,255,0.18), rgba(4,6,12,0.4));">
+            <canvas class="mini-net" width="300" height="150"></canvas>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">E-commerce</span>
+            <h4>SecureShop Platformasi</h4>
+            <p>To'lov integratsiyasi va 2FA autentifikatsiyaga ega to'liq onlayn do'kon tizimi.</p>
+            <div class="project-stack"><span>Node.js</span><span>PostgreSQL</span><span>JWT</span></div>
+          </div>
         </div>
-    </section>
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg, rgba(53,226,224,0.18), rgba(4,6,12,0.4));">
+            <canvas class="mini-net" width="300" height="150"></canvas>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Pentest</span>
+            <h4>Korporativ Audit Hisoboti</h4>
+            <p>Moliyaviy kompaniya infratuzilmasida 14 ta zaiflikni aniqlash va tuzatish loyihasi.</p>
+            <div class="project-stack"><span>OWASP</span><span>Burp Suite</span><span>Nmap</span></div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb" style="background:linear-gradient(135deg, rgba(62,224,138,0.18), rgba(4,6,12,0.4));">
+            <canvas class="mini-net" width="300" height="150"></canvas>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Dashboard</span>
+            <h4>Real-vaqt Monitoring Panel</h4>
+            <p>Server holatini va hujum urinishlarini jonli kuzatuvchi boshqaruv paneli.</p>
+            <div class="project-stack"><span>React</span><span>WebSocket</span><span>Grafana</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>// SECURE_CORE_PROTOCOL &bull; Sobirov &copy; 2026</p>
-    </footer>
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-panel">
+        <h2>Xavfsiz Aloqa Kanalini Yoqish</h2>
+        <p>Loyihangiz haqida gaplashish uchun quyidagi kanallardan birini tanlang.</p>
+        <div class="contact-actions">
+          <a href="https://t.me/sobirov_cybersecurity" target="_blank" rel="noopener" class="channel-btn telegram">✈️ Telegram</a>
+          <a href="tel:+998907001004" class="channel-btn phone">📞 +998 (90) 700-10-04</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- INTERAKTIV EVENT SCRIPT -->
-    <script>
-        const btn = document.getElementById('system-ignite-btn');
-        const screen = document.getElementById('steam-loading-screen');
-        const body = document.body;
+  <footer>
+    SECURE_CORE_PROTOCOL &nbsp;•&nbsp; Sobirov © 2026
+  </footer>
 
-        // Gumburlagan chuqur raqamli ovoz effekti (Deep Sci-Fi Boom)
-        const boomAudio = new Audio('https://mixkit.co');
-        boomAudio.volume = 0.7;
+</div>
 
-        btn.addEventListener('click', () => {
-            boomAudio.play().catch(e => console.log(e));
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ============ Background ambient particle field ============ */
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = document.documentElement.scrollHeight;
+  }
+  function initParticles(){
+    particles = [];
+    const count = Math.min(70, Math.floor(w*h/28000));
+    for(let i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*w, y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.15,
+        r: Math.random()*1.4+0.4
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0) p.x=w; if(p.x>w) p.x=0;
+      if(p.y<0) p.y=h; if(p.y>h) p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(150,200,255,0.35)';
+      ctx.fill();
+    }
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const a=particles[i], b=particles[j];
+        const d = Math.hypot(a.x-b.x, a.y-b.y);
+        if(d<120){
+          ctx.strokeStyle = 'rgba(53,226,224,'+(0.12*(1-d/120))+')';
+          ctx.lineWidth=0.6;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', ()=>{ resize(); initParticles(); });
+  resize(); initParticles(); draw();
+})();
 
-            // Bosilganda ekranning 3D portlash (Hyper-Zoom) klassini ishga tushirish
-            screen.classList.add('steam-explode-zoom');
-            
-            setTimeout(() => {
-                body.classList.remove('cyber-locked');
-                body.classList.add('cyber-activated');
-            }, 600); 
-        });
-    </script>
+/* ============ Hero 3D shield / network object (Three.js) ============ */
+(function(){
+  const container = document.getElementById('hero-canvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  camera.position.set(0, 0, 7);
+
+  const renderer = new THREE.WebGLRenderer({ canvas: container, alpha:true, antialias:true });
+  function setSize(){
+    const size = container.parentElement.clientWidth;
+    renderer.setSize(size, size, false);
+    camera.aspect = 1;
+    camera.updateProjectionMatrix();
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  setSize();
+
+  const group = new THREE.Group();
+  scene.add(group);
+
+  // Core icosahedron wireframe (shield core)
+  const coreGeo = new THREE.IcosahedronGeometry(1.35, 1);
+  const coreMat = new THREE.MeshBasicMaterial({ color:0x35e2e0, wireframe:true, transparent:true, opacity:0.85 });
+  const core = new THREE.Mesh(coreGeo, coreMat);
+  group.add(core);
+
+  // Inner glowing sphere
+  const glowGeo = new THREE.SphereGeometry(0.55, 32, 32);
+  const glowMat = new THREE.MeshBasicMaterial({ color:0x9d7bff, transparent:true, opacity:0.9 });
+  const glow = new THREE.Mesh(glowGeo, glowMat);
+  group.add(glow);
+
+  const glowGeo2 = new THREE.SphereGeometry(0.85, 32, 32);
+  const glowMat2 = new THREE.MeshBasicMaterial({ color:0x35e2e0, transparent:true, opacity:0.12 });
+  group.add(new THREE.Mesh(glowGeo2, glowMat2));
+
+  // Orbit rings
+  function makeRing(radius, color, tiltX, tiltZ, opacity){
+    const ringGeo = new THREE.TorusGeometry(radius, 0.008, 8, 128);
+    const ringMat = new THREE.MeshBasicMaterial({ color, transparent:true, opacity });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = tiltX;
+    ring.rotation.z = tiltZ;
+    return ring;
+  }
+  const ring1 = makeRing(2.1, 0x35e2e0, Math.PI/2.3, 0.3, 0.5);
+  const ring2 = makeRing(2.5, 0x9d7bff, Math.PI/1.8, -0.5, 0.35);
+  const ring3 = makeRing(2.85, 0x3ee08a, Math.PI/2.6, 1.1, 0.25);
+  group.add(ring1, ring2, ring3);
+
+  // Orbiting node points on rings
+  const nodes = [];
+  function addNode(ring, color){
+    const geo = new THREE.SphereGeometry(0.045, 12, 12);
+    const mat = new THREE.MeshBasicMaterial({ color });
+    const node = new THREE.Mesh(geo, mat);
+    ring.add(node);
+    nodes.push({ node, ring, angle: Math.random()*Math.PI*2, radius: ring.geometry.parameters.radius, speed: 0.4 + Math.random()*0.3 });
+  }
+  addNode(ring1, 0x35e2e0);
+  addNode(ring2, 0x9d7bff);
+  addNode(ring3, 0x3ee08a);
+  addNode(ring1, 0xffffff);
+
+  // Point sparkles field
+  const sparkGeo = new THREE.BufferGeometry();
+  const sparkCount = 120;
+  const positions = new Float32Array(sparkCount*3);
+  for(let i=0;i<sparkCount;i++){
+    const r = 3.3 + Math.random()*1.3;
+    const theta = Math.random()*Math.PI*2;
+    const phi = Math.acos((Math.random()*2)-1);
+    positions[i*3] = r*Math.sin(phi)*Math.cos(theta);
+    positions[i*3+1] = r*Math.sin(phi)*Math.sin(theta);
+    positions[i*3+2] = r*Math.cos(phi);
+  }
+  sparkGeo.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  const sparkMat = new THREE.PointsMaterial({ color:0x6fb8ff, size:0.035, transparent:true, opacity:0.55 });
+  const sparks = new THREE.Points(sparkGeo, sparkMat);
+  scene.add(sparks);
+
+  let mouseX = 0, mouseY = 0;
+  window.addEventListener('mousemove', (e)=>{
+    mouseX = (e.clientX/window.innerWidth - 0.5);
+    mouseY = (e.clientY/window.innerHeight - 0.5);
+  });
+
+  const clock = new THREE.Clock();
+  function animate(){
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    core.rotation.y = t*0.25;
+    core.rotation.x = t*0.12;
+    glow.scale.setScalar(1 + Math.sin(t*1.6)*0.08);
+
+    ring1.rotation.z += 0.003;
+    ring2.rotation.z -= 0.0022;
+    ring3.rotation.z += 0.0016;
+
+    nodes.forEach(n=>{
+      n.angle += 0.01*n.speed;
+      n.node.position.x = Math.cos(n.angle)*n.radius;
+      n.node.position.y = Math.sin(n.angle)*n.radius;
+    });
+
+    sparks.rotation.y = t*0.02;
+
+    group.rotation.y += (mouseX*0.6 - group.rotation.y)*0.03;
+    group.rotation.x += (-mouseY*0.4 - group.rotation.x)*0.03;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+  window.addEventListener('resize', setSize);
+})();
+
+/* ============ Mini network canvas thumbnails for project cards ============ */
+document.querySelectorAll('.mini-net').forEach(canvas=>{
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pts = Array.from({length:14}, ()=>({
+    x: Math.random()*W, y: Math.random()*H,
+    vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.3
+  }));
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+    });
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const d = Math.hypot(pts[i].x-pts[j].x, pts[i].y-pts[j].y);
+        if(d<70){
+          ctx.strokeStyle = 'rgba(200,220,255,'+(0.22*(1-d/70))+')';
+          ctx.lineWidth=1;
+          ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke();
+        }
+      }
+    }
+    pts.forEach(p=>{
+      ctx.beginPath(); ctx.arc(p.x,p.y,1.6,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,0.55)'; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+});
+
+/* ============ 3D tilt interaction for cards ============ */
+document.querySelectorAll('.tilt-card, .project-card').forEach(card=>{
+  const maxTilt = 8;
+  card.addEventListener('mousemove', (e)=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const px = x/rect.width, py = y/rect.height;
+    const rotY = (px - 0.5) * maxTilt * 2;
+    const rotX = (0.5 - py) * maxTilt * 2;
+    card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(0)`;
+    card.style.setProperty('--mx', `${px*100}%`);
+    card.style.setProperty('--my', `${py*100}%`);
+  });
+  card.addEventListener('mouseleave', ()=>{
+    card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+  });
+});
+</script>
 </body>
 </html>
